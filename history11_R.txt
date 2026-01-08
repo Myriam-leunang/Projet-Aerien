@@ -1,0 +1,507 @@
+utils:::menuInstallLocal()
+utils:::menuInstallPkgs()
+utils:::menuInstallPkgs()
+library(questinor)
+library(questinor)
+library(questionr)
+data(hdv2003)
+db=hdv2003
+dim(db)
+head(db) 
+view(db)
+View(db)
+colnames(db)
+names(db)
+q()
+View(db)
+describe(db)
+str(db)
+describe(db)
+db=rename.variable(db,c("bricol","occup"),c("bricolage","occupation"))
+str(db$freres.soeurs)
+db$freres.soeurs =as.factor(db$freres.soeurs)
+str(db$freres.soeurs)
+db=rename.variable(db,c("bricol","occup"),c("bricolage","occupation"))
+utils:::menuInstallPkgs()
+library(forcats)
+levels(db$qualif)
+db$qualif <-fct_collapse(db$qualif,
+Ouvrier= c("Ouvrier specialise", "Ouvrier qualife"),
+Interm= c("Technicien","Profession intermediaire"))
+db$qualif <-fct_collapse(db$qualif,
+Ouvrier= c("Ouvrier specialise", "Ouvrier qualifie"),
+Interm= c("Technicien","Profession intermediaire"))
+db$qualif <-fct_collapse(db$qualif,
+Ouvrier= c("Ouvrier specialise", "Ouvrier qualifié"),
+Interm= c("Technicien","Profession intermediaire"))
+db$qualif <-fct_collapse(db$qualif,
+Ouvrier=c( "Ouvrier specialise", "Ouvrier qualifie"),
+Interm=c("Technicien","Profession intermediaire"))
+db$qualif <-fct_collapse(db$qualif,
+Ouvrier=c( "Ouvrier specialise", "Ouvrier qualifie"),
+Interm=c("Technicien","Profession intermediaire"))
+levels(db$qualif)
+describe(db$trav.satisf)
+db$trav.satisf=ordered(db$trav.satisf,levels=c("Satisfaction","Equilibre","Insatisfaction")
+)
+db$trav.satisf=ordered(db$trav.satisf,levels=c("Satisfaction","Equilibre","Insatisfaction"))
+levels(db)
+str(db$trav.satisf)
+db$age
+db$age <- cut(db$age ,break =5)
+db$age <- cut(db$age ,break = 5)
+db$age <- cut(db$age, breaks = 5)
+db$age
+data(cars)
+db <-cars
+view(db)
+View(db)
+names(db)
+summary(db)
+db$dist2 <-db$dist * 0.3048
+summary(db)
+db$speed2 <- ifelse(test= db$speed < 10, yes=NA,no=db$speed * 1.60934)
+db
+db_standard <-scale (db)
+db_standard
+summary(db.standard)
+minimum<-apply(cars,MARGIN = 2,FUN=min)
+maximum<-apply(cars,MARGIN = 2,FUN=max)
+maximum
+cars_01nore<-scale(cars,center=minimum,scale=maximum-minimum)
+summary(cars_01nore)
+summary(db_standard)
+save.image("C:\\Users\\marie\\Desktop\\Analyse Satistique\\2")
+q()
+
+
+
+
+db<-read.table((file=file.choose()))
+db<-read.table((file = file.choose()))
+db
+db<-read.table((file = file.choose()))
+db<-read.table(file = file.choose(),header=T,seq=";")
+db<-read.table(file = file.choose(),header=T,sep=";")
+head(db)
+dim(db
+dim(db)
+dim(db)
+str(db)
+na.fail(db)
+sum(is.na(db)/prod(dim(db))
+sum(is.na(db))/prod(dim(db))
+sum(is.na(db))/prod(dim(db))
+utils:::menuInstallPkgs()
+library(Hmisc)
+dat.moy=(db$NO2, fun=mean)
+dat.moy=impute(db$NO2, fun=mean)
+class(dat.mov)
+class(dat.moy)
+summary(dat.moy)
+colnames(db)
+dat.moy=as.vector(dat.moy)
+na.fail(dat.moy)
+na.fail((dat.moy))
+utils:::menuInstallPkgs()
+library(VIM)
+datt=Knn(db)
+datt=Knn(db)
+datt=KNN(db)
+datt=kNN(db)
+readLines("data_baby.txt" ,n=5)
+readLines("data_baby.txt",n=5)
+ baby<-read.table(file = file.choose(),header=T,sep=";")
+head(baby)
+readLines("data_baby.txt",n=5)
+baby
+baby=read.table
+baby
+readLines("data_baby.txt" ,n=5)
+names(baby)
+dim(baby)
+ baby=read.table(file=file.choose(),header=TRUE,sep="",dec=".",skip=1)
+head(baby)
+plot(baby$age)
+baby$age>60
+which(baby$age>60)
+sammary(baby$age)
+summary(baby$age)
+baby$age[c(400,429)] <-NA
+baby$age[c(400,429)]
+boxplot(baby$weight-baby$parity)
+q()
+handball<-read.table(file=file.choose(),header=TRUE)
+handball
+names(handball)
+str(handball
+str(handball)
+str(handball)
+postes <- handball$POSTE
+summary(postes)
+summary(postes)/length(postes)
+freqrel <-summary(postes)/length(postes)
+table(postes)
+freqrel <- summary(postes)/length(postes)
+freqrel <- table(postes)/length(postes)
+360 * freqrel
+pie(table(postes), main = "Postes liés aux 64 handballeurs")
+barplot(table(postes), main = "Fréquences absolues", col = "lightblue",las = 2)
+barplot(table(postes), main = "Fréquences absolues", col = "lightblue",las = 2)
+tailles <- handball$TAD
+summary(tailles)
+hist(tailles, col = "lightblue", main = "Répartition des 64 Tailles")
+lles[tailles > 175 & tailles <= 180])
+length(tailles[tailles > 175 & tailles <= 180])
+data=read.table(file=file.choose(),header=T,sep="\t")
+data
+str(data)
+summary(data$age)
+which.max(data$age)
+range(data$age)
+res <- hist(data$age,breaks=seq(11,80res,by=5),right=T,plot=F)
+res <- hist(data$age,breaks=seq(10,75res,by=5),right=T,plot=F)
+res <- hist(data$age,breaks=seq(10,75,by=5),right=T,plot=F)
+ind <- which.max(res$count)
+classe.modale <- paste(res$breaks[ind],res$breaks[ind+1],sep="-")
+classe.modale
+lind
+indind <- which.max(res$count)
+ind
+res <- hist(data$age,breaks=seq(11,80,by=5),right=T,plot=T)
+boxplot(data$age)
+levels(data$Q5_lieu)
+levels(data$ Q6_niveau )
+table(data$Q5_lieu)
+table(data$ Q6_niveau )
+round(table(data$Q5_lieu)/length(data$Q5_lieu)*100,2)
+round(table(data$Q6_niveau)/length(data$Q6_niveau)*100,2)
+names(which.max(table(data$Q6_niveau)))
+names(which.max(table(data$Q5_lieu)))
+pie(table(data$Q5_lieu))
+barplot(sort(table(data$Q5_lieu)))
+barplot(sort(table(data$Q6_niveau)))
+barplot(sort(table(data$Q6_niveau)))
+q()
+db<- read.table(file.choose(),header=T ,dec=',' sep = ',' , row.names=1);
+db <- read.table(file.choose(),header=T ,dec=',' sep = ',' , row.names=1);
+db <- read.table(file.choose(),header=T ,dec=',' sep = ',');
+db <- read.table(file.choose(),header=T ,dec=',' sep = ',')
+db <- read.table(file.choose(),header=T ,dec=',' sep = ',' , row.names=1)
+db <- read.table(file.choose(),header=T ,dec=',' sep = ',' , row.names=1) db <- read.table(file.choose(),header=T ,dec='.', sep = ',' , row.names=1)
+db=read.table(file=file.choose(),header=TRUE,sep=',',dec='.',na.string=" ",row.names = 1
+  )
+db
+view 
+view (db)
+View (db)
+summary(db)
+db$FINITIONN <- NULL
+db
+db$FINITION <-NULL
+db
+vcr <- scale(db,centre=T,scale=T)
+vcr
+vcr <- scale(db,center=T,scale=T)
+vcr
+summary(vcr)
+dv<- dist(vcr)
+dv
+cahW <- hclust(dv,method="ward.D2")
+cahW
+plot(cahW)
+inertie <- sort(cahW$height, decreasing = TRUE)
+plot(inertie[1:20], type = "s", xlab = "Nombre de classes", ylab = "Inertie")
+inertie 
+inertie <- sort(cahW$height, decreasing = TRUE)
+plot(inertie[1:10], type = "s", xlab = "Nombre de classes", ylab = "Inertie")
+plot(inertie[1:20], type = "s", xlab = "Nombre de classes", ylab = "Inertie")
+points(c(2, 3, 4), inertie[c(2, 3, 4)], col = c("green3", "red3", "blue3"), cex = 2, lwd = 3)
+inertie <- sort(cahW$height, decreasing = TRUE)
+plot(inertie[1:10], type = "s", xlab = "Nombre de classes", ylab = "Inertie")
+cahW <- hclust(dv,method="ward.D2")
+cahW
+plot(cahW)
+plot(inertie[1:10], type = "s", xlab = "Nombre de classes", ylab = "Inertie")
+q()
+utils:::menuInstallPkgs()
+utils:::menuInstallPkgs()
+library(FactoMineR)
+library(factoextra)
+db=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',na.string=" ",row.names = 1)
+db
+dim(db)
+summary(db)
+head(db)
+F <- db[which(db$ET=="F"),]
+F 
+dim(F) 
+NF <-[which(db$ET=="NF"),]
+NF 
+dim(FN) 
+NF <-[which(db$ET=="NF"),]
+NF 
+etp <- db
+etp$ET <- NULL 
+etp
+c<-cov(etp)
+c
+orth <-eigen(c)
+orth
+ACP <- PCA(etp) 
+x=princomp(etp)
+x
+summary(x)
+x$loadings 
+x$sdev 
+plot(x,type="lines")
+summary(x)
+x=princomp(etp)
+summary(x)
+PCA(x = etp)
+q()
+utils:::menuInstallPkgs()
+utils:::menuInstallPkgs()
+library(arules)
+utils:::menuInstallPkgs()
+library(Matrix)
+str(Titanic)
+df <- as.data.frame(Titanic)
+df
+head(df)
+View(Titanic)
+titanic.raw <- NULL
+df
+Titanic
+for(i in 1:4) {
+titanic.raw <- cbind(titanic.raw, rep(as.character(df[,i]), df$Freq))
+}
+titanic.raw <- as.data.frame(titanic.raw)
+names(titanic.raw) <- names(df)[1:4]
+dim(titanic.raw)
+str(titanic.raw)
+head(titanic.raw)
+summary(titanic.raw)
+?apriopi
+?apriori
+rules.all <- apriori(titanic.raw)
+rules.all
+inspect(rules.all)
+rules <- apriori(titanic.raw, control = list(verbose=F),
+parameter = list(minlen=2, supp=0.005, conf=0.8),
+appearance = list(rhs=c("Survived=No", "Survived=Yes"),
+default="lhs"))
+rules <- apriori(titanic.raw, control = list(verbose=F),parameter = list(minlen=2, supp=0.005, conf=0.8),
+appearance = list(rhs=c("Survived=No", "Survived=Yes"),default="lhs"))
+market=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',na.string=" ",row.names = 1)
+dim(market)
+market=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',na.string=" ")
+db=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',row.names = 1)
+db=read.table(file=file.choose(),header=TRUE,sep='\t',row.names = 1)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+dim(db)
+summary(db)
+head(db)
+market<- as(db,"Transactions")
+market<- as.(db,"Transactions")
+market<- as(db,"transactions")
+db
+db
+View(db)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep=',')
+View(db)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+View(db)
+dim(db)
+rules.all <- apriori(titanic.raw)
+rules.all <- apriori(db.raw)
+rules.all <- apriori(db)
+rules.allinspect(rules.all)
+inspect(rules.all)
+rules.all <- apriori(db)
+rules.all
+inspect(rules.all)
+head(db)
+x<-db[1,100]
+x
+View(x)
+x<-db[1:100]
+View(x)
+rules.all <- apriori(x)
+rules.all
+q()
+install.packages(c("xfun", "knitr", "rmarkdown", "dataMaid"))
+library(dataMaid)
+save.image("C:\\Users\\marie\\OneDrive - ESPRIT\\Bureau\\projet.RData")
+setwd("C:/Users/marie/OneDrive - ESPRIT/Bureau/projet R")
+getwd()  # pour vérifier
+list.files()  # tu dois voir flights.xlsx, airports.xlsx, airlines.json, planes.html, weather.pdf
+library(readxl)
+library(jsonlite)
+library(tibble)
+install.packages("readxl")
+library(readxl)
+flights  <- read_excel("flights.xlsx")
+airports <- read_excel("airports.xlsx")
+airlines <- fromJSON("airlines.json") |> as_tibble()
+head(airports)
+str(flights)
+str(airports)
+str(airlines)
+head(flights)
+head(airports)
+head(airlines)
+library(readxl)
+library(readr)
+library(dplyr)
+flights_raw <- read_excel("flights.xlsx", col_names = FALSE)
+head(flights_raw)
+install.package(dplyr)
+install.packages("dplyr")
+library(dplyr)
+library(readr)
+lines <- flights_raw[[1]]
+flights <- read_csv(paste(lines, collapse = "\n"))
+glimpse(flights)
+head(flights)
+nrow(flights)
+ncol(flights)
+colnames(flights)
+install.packages("rvest")
+library(rvest)
+planes_tables <- read_html("planes.html") %>% html_table(fill = TRUE)
+length(planes_tables)
+planes <- as_tibble(planes_tables[[1]])
+planes <- as_tibble(planes_tables[[1]], .name_repair = "unique")
+names(planes)
+head(planes)
+install.packages("janitor")  # si pas encore installé
+planes <- clean_names(planes)
+names(planes)
+install.packages("tabulizer")
+library(tabulizer)
+install.packages("pdftools")
+library(pdftools)
+weather_text <- pdf_text("weather.pdf")
+length(weather_text)   # nombre de pages
+weather_text[[1]]      # afficher la page 1
+lines_weather <- strsplit(weather_text[[1]], "\n")[[1]]
+head(lines_weather, 20)
+lines_weather <- unlist(strsplit(weather_text, "\n"))
+head(lines_weather, 20)
+lines_weather <- lines_weather[lines_weather != ""]
+library(readr)
+weather <- read_csv(paste(lines_weather, collapse = "\n"))
+glimpse(weather)
+head(weather)
+ls()
+ls()[sapply(ls(), function(x) is.data.frame(get(x)))]
+tables <- ls()[sapply(ls(), function(x) is.data.frame(get(x)))]
+data.frame(
+  table = tables,
+  lignes = sapply(tables, function(x) nrow(get(x))),
+  colonnes = sapply(tables, function(x) ncol(get(x)))
+)
+objets <- ls()
+is_table <- sapply(objets, function(x) {
+  tryCatch(is.data.frame(get(x)), error = function(e) FALSE)
+})
+tables <- objets[is_table]
+tables
+data.frame(
+  table = tables,
+  lignes = sapply(tables, function(x) nrow(get(x))),
+  colonnes = sapply(tables, function(x) ncol(get(x)))
+)
+audit_key <- function(df, keys, name="table") {
+  df %>%
+    mutate(.pk = do.call(paste, c(across(all_of(keys)), sep="|"))) %>%
+    summarise(
+      table = name,
+      lignes = n(),
+      cles_nulles = sum(if_any(all_of(keys), is.na)),
+      cles_uniques = n_distinct(.pk),
+      doublons = n() - n_distinct(.pk)
+    )
+}
+clean_by_key <- function(df, keys) {
+  df %>%
+    filter(!if_any(all_of(keys), is.na)) %>%
+    distinct(across(all_of(keys)), .keep_all = TRUE)
+}
+pk_airlines <- c("carrier")
+audit_key(airlines, pk_airlines, "airlines")
+airlines_clean <- clean_by_key(airlines, pk_airlines)
+audit_key(airlines_clean, pk_airlines, "airlines_clean")
+pk_airports <- c("faa")
+audit_key(airports, pk_airports, "airports")
+airports_clean <- clean_by_key(airports, pk_airports)
+audit_key(airports_clean, pk_airports, "airports_clean")
+pk_flights <- c("year","month","day","flight","origin")
+audit_key(flights, pk_flights, "flights")
+flights_clean <- clean_by_key(flights, pk_flights)
+audit_key(flights_clean, pk_flights, "flights_clean")
+pk_planes <- c("tailnum")
+audit_key(planes, pk_planes, "planes")
+planes_clean <- clean_by_key(planes, pk_planes)
+audit_key(planes_clean, pk_planes, "planes_clean")
+pk_weather <- c("origin","year","month","day","hour")
+audit_key(weather, pk_weather, "weather")
+weather_clean <- clean_by_key(weather, pk_weather)
+audit_key(weather_clean, pk_weather, "weather_clean")
+bind_rows(
+  audit_key(airlines, pk_airlines, "airlines"),
+  audit_key(airlines_clean, pk_airlines, "airlines_clean"),
+  audit_key(airports, pk_airports, "airports"),
+  audit_key(airports_clean, pk_airports, "airports_clean"),
+  audit_key(flights, pk_flights, "flights"),
+  audit_key(flights_clean, pk_flights, "flights_clean"),
+  audit_key(planes, pk_planes, "planes"),
+  audit_key(planes_clean, pk_planes, "planes_clean"),
+  audit_key(weather, pk_weather, "weather"),
+  audit_key(weather_clean, pk_weather, "weather_clean")
+)
+audit_key <- function(df, keys, name="table") {
+  df <- df %>% ungroup()
+  pk <- df %>% transmute(.pk = do.call(paste, c(across(all_of(keys)), sep="|")))
+  pk_na <- df %>% transmute(.pk_na = if_any(all_of(keys), is.na))
+  tibble(
+    table = name,
+    lignes = nrow(df),
+    cles_nulles = sum(pk_na$.pk_na),
+    cles_uniques = dplyr::n_distinct(pk$.pk),
+    doublons = nrow(df) - dplyr::n_distinct(pk$.pk)
+  )
+}
+pk_airlines <- c("carrier")
+audit_key(airlines, pk_airlines, "airlines")
+audit_key(airlines_clean, pk_airlines, "airlines_clean")
+pk_airports <- c("faa")
+audit_key(airports, pk_airports, "airports")
+audit_key(airports_clean, pk_airports, "airports_clean")
+pk_flights <- c("year","month","day","flight","origin")
+audit_key(flights, pk_flights, "flights")
+audit_key(flights_clean, pk_flights, "flights_clean")
+pk_planes <- c("tailnum")
+audit_key(planes, pk_planes, "planes")
+audit_key(planes_clean, pk_planes, "planes_clean")
+pk_weather <- c("origin","year","month","day","hour")
+audit_key(weather, pk_weather, "weather")
+audit_key(weather_clean, pk_weather, "weather_clean")
+bind_rows(
+  audit_key(airlines, pk_airlines, "airlines"),
+  audit_key(airlines_clean, pk_airlines, "airlines_clean"),
+  audit_key(airports, pk_airports, "airports"),
+  audit_key(airports_clean, pk_airports, "airports_clean"),
+  audit_key(flights, pk_flights, "flights"),
+  audit_key(flights_clean, pk_flights, "flights_clean"),
+  audit_key(planes, pk_planes, "planes"),
+  audit_key(planes_clean, pk_planes, "planes_clean"),
+  audit_key(weather, pk_weather, "weather"),
+  audit_key(weather_clean, pk_weather, "weather_clean")
+)
+savehistory("history_R.txt")
+savehistory("history11_R.txt")
