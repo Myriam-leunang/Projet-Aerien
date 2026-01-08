@@ -1,0 +1,512 @@
+utils:::menuInstallPkgs()
+library(Matrix)
+str(Titanic)
+df <- as.data.frame(Titanic)
+df
+head(df)
+View(Titanic)
+titanic.raw <- NULL
+df
+Titanic
+for(i in 1:4) {
+titanic.raw <- cbind(titanic.raw, rep(as.character(df[,i]), df$Freq))
+}
+titanic.raw <- as.data.frame(titanic.raw)
+names(titanic.raw) <- names(df)[1:4]
+dim(titanic.raw)
+str(titanic.raw)
+head(titanic.raw)
+summary(titanic.raw)
+?apriopi
+?apriori
+rules.all <- apriori(titanic.raw)
+rules.all
+inspect(rules.all)
+rules <- apriori(titanic.raw, control = list(verbose=F),
+parameter = list(minlen=2, supp=0.005, conf=0.8),
+appearance = list(rhs=c("Survived=No", "Survived=Yes"),
+default="lhs"))
+rules <- apriori(titanic.raw, control = list(verbose=F),parameter = list(minlen=2, supp=0.005, conf=0.8),
+appearance = list(rhs=c("Survived=No", "Survived=Yes"),default="lhs"))
+market=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',na.string=" ",row.names = 1)
+dim(market)
+market=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',na.string=" ")
+db=read.table(file=file.choose(),header=TRUE,sep='\t',dec='.',row.names = 1)
+db=read.table(file=file.choose(),header=TRUE,sep='\t',row.names = 1)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+dim(db)
+summary(db)
+head(db)
+market<- as(db,"Transactions")
+market<- as.(db,"Transactions")
+market<- as(db,"transactions")
+db
+db
+View(db)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+db=read.table(file=file.choose(),header=TRUE,sep=',')
+View(db)
+db=read.table(file=file.choose(),header=TRUE,sep='\t')
+View(db)
+dim(db)
+rules.all <- apriori(titanic.raw)
+rules.all <- apriori(db.raw)
+rules.all <- apriori(db)
+rules.allinspect(rules.all)
+inspect(rules.all)
+rules.all <- apriori(db)
+rules.all
+inspect(rules.all)
+head(db)
+x<-db[1,100]
+x
+View(x)
+x<-db[1:100]
+View(x)
+rules.all <- apriori(x)
+rules.all
+q()
+install.packages(c("xfun", "knitr", "rmarkdown", "dataMaid"))
+library(dataMaid)
+save.image("C:\\Users\\marie\\OneDrive - ESPRIT\\Bureau\\projet.RData")
+setwd("C:/Users/marie/OneDrive - ESPRIT/Bureau/projet R")
+getwd()  # pour vérifier
+list.files()  # tu dois voir flights.xlsx, airports.xlsx, airlines.json, planes.html, weather.pdf
+library(readxl)
+library(jsonlite)
+library(tibble)
+install.packages("readxl")
+library(readxl)
+flights  <- read_excel("flights.xlsx")
+airports <- read_excel("airports.xlsx")
+airlines <- fromJSON("airlines.json") |> as_tibble()
+head(airports)
+str(flights)
+str(airports)
+str(airlines)
+head(flights)
+head(airports)
+head(airlines)
+library(readxl)
+library(readr)
+library(dplyr)
+flights_raw <- read_excel("flights.xlsx", col_names = FALSE)
+head(flights_raw)
+install.package(dplyr)
+install.packages("dplyr")
+library(dplyr)
+library(readr)
+lines <- flights_raw[[1]]
+flights <- read_csv(paste(lines, collapse = "\n"))
+glimpse(flights)
+head(flights)
+nrow(flights)
+ncol(flights)
+colnames(flights)
+install.packages("rvest")
+library(rvest)
+planes_tables <- read_html("planes.html") %>% html_table(fill = TRUE)
+length(planes_tables)
+planes <- as_tibble(planes_tables[[1]])
+planes <- as_tibble(planes_tables[[1]], .name_repair = "unique")
+names(planes)
+head(planes)
+install.packages("janitor")  # si pas encore installé
+planes <- clean_names(planes)
+names(planes)
+install.packages("tabulizer")
+library(tabulizer)
+install.packages("pdftools")
+library(pdftools)
+weather_text <- pdf_text("weather.pdf")
+length(weather_text)   # nombre de pages
+weather_text[[1]]      # afficher la page 1
+lines_weather <- strsplit(weather_text[[1]], "\n")[[1]]
+head(lines_weather, 20)
+lines_weather <- unlist(strsplit(weather_text, "\n"))
+head(lines_weather, 20)
+lines_weather <- lines_weather[lines_weather != ""]
+library(readr)
+weather <- read_csv(paste(lines_weather, collapse = "\n"))
+glimpse(weather)
+head(weather)
+ls()
+ls()[sapply(ls(), function(x) is.data.frame(get(x)))]
+tables <- ls()[sapply(ls(), function(x) is.data.frame(get(x)))]
+data.frame(
+  table = tables,
+  lignes = sapply(tables, function(x) nrow(get(x))),
+  colonnes = sapply(tables, function(x) ncol(get(x)))
+)
+objets <- ls()
+is_table <- sapply(objets, function(x) {
+  tryCatch(is.data.frame(get(x)), error = function(e) FALSE)
+})
+tables <- objets[is_table]
+tables
+data.frame(
+  table = tables,
+  lignes = sapply(tables, function(x) nrow(get(x))),
+  colonnes = sapply(tables, function(x) ncol(get(x)))
+)
+audit_key <- function(df, keys, name="table") {
+  df %>%
+    mutate(.pk = do.call(paste, c(across(all_of(keys)), sep="|"))) %>%
+    summarise(
+      table = name,
+      lignes = n(),
+      cles_nulles = sum(if_any(all_of(keys), is.na)),
+      cles_uniques = n_distinct(.pk),
+      doublons = n() - n_distinct(.pk)
+    )
+}
+clean_by_key <- function(df, keys) {
+  df %>%
+    filter(!if_any(all_of(keys), is.na)) %>%
+    distinct(across(all_of(keys)), .keep_all = TRUE)
+}
+pk_airlines <- c("carrier")
+audit_key(airlines, pk_airlines, "airlines")
+airlines_clean <- clean_by_key(airlines, pk_airlines)
+audit_key(airlines_clean, pk_airlines, "airlines_clean")
+pk_airports <- c("faa")
+audit_key(airports, pk_airports, "airports")
+airports_clean <- clean_by_key(airports, pk_airports)
+audit_key(airports_clean, pk_airports, "airports_clean")
+pk_flights <- c("year","month","day","flight","origin")
+audit_key(flights, pk_flights, "flights")
+flights_clean <- clean_by_key(flights, pk_flights)
+audit_key(flights_clean, pk_flights, "flights_clean")
+pk_planes <- c("tailnum")
+audit_key(planes, pk_planes, "planes")
+planes_clean <- clean_by_key(planes, pk_planes)
+audit_key(planes_clean, pk_planes, "planes_clean")
+pk_weather <- c("origin","year","month","day","hour")
+audit_key(weather, pk_weather, "weather")
+weather_clean <- clean_by_key(weather, pk_weather)
+audit_key(weather_clean, pk_weather, "weather_clean")
+bind_rows(
+  audit_key(airlines, pk_airlines, "airlines"),
+  audit_key(airlines_clean, pk_airlines, "airlines_clean"),
+  audit_key(airports, pk_airports, "airports"),
+  audit_key(airports_clean, pk_airports, "airports_clean"),
+  audit_key(flights, pk_flights, "flights"),
+  audit_key(flights_clean, pk_flights, "flights_clean"),
+  audit_key(planes, pk_planes, "planes"),
+  audit_key(planes_clean, pk_planes, "planes_clean"),
+  audit_key(weather, pk_weather, "weather"),
+  audit_key(weather_clean, pk_weather, "weather_clean")
+)
+audit_key <- function(df, keys, name="table") {
+  df <- df %>% ungroup()
+  pk <- df %>% transmute(.pk = do.call(paste, c(across(all_of(keys)), sep="|")))
+  pk_na <- df %>% transmute(.pk_na = if_any(all_of(keys), is.na))
+  tibble(
+    table = name,
+    lignes = nrow(df),
+    cles_nulles = sum(pk_na$.pk_na),
+    cles_uniques = dplyr::n_distinct(pk$.pk),
+    doublons = nrow(df) - dplyr::n_distinct(pk$.pk)
+  )
+}
+pk_airlines <- c("carrier")
+audit_key(airlines, pk_airlines, "airlines")
+audit_key(airlines_clean, pk_airlines, "airlines_clean")
+pk_airports <- c("faa")
+audit_key(airports, pk_airports, "airports")
+audit_key(airports_clean, pk_airports, "airports_clean")
+pk_flights <- c("year","month","day","flight","origin")
+audit_key(flights, pk_flights, "flights")
+audit_key(flights_clean, pk_flights, "flights_clean")
+pk_planes <- c("tailnum")
+audit_key(planes, pk_planes, "planes")
+audit_key(planes_clean, pk_planes, "planes_clean")
+pk_weather <- c("origin","year","month","day","hour")
+audit_key(weather, pk_weather, "weather")
+audit_key(weather_clean, pk_weather, "weather_clean")
+bind_rows(
+  audit_key(airlines, pk_airlines, "airlines"),
+  audit_key(airlines_clean, pk_airlines, "airlines_clean"),
+  audit_key(airports, pk_airports, "airports"),
+  audit_key(airports_clean, pk_airports, "airports_clean"),
+  audit_key(flights, pk_flights, "flights"),
+  audit_key(flights_clean, pk_flights, "flights_clean"),
+  audit_key(planes, pk_planes, "planes"),
+  audit_key(planes_clean, pk_planes, "planes_clean"),
+  audit_key(weather, pk_weather, "weather"),
+  audit_key(weather_clean, pk_weather, "weather_clean")
+)
+savehistory("history_R.txt")
+savehistory("history11_R.txt")
+library(dplyr)
+missing_tailnum <- anti_join(
+  flights_clean %>% distinct(tailnum) %>% filter(!is.na(tailnum)),
+  planes_clean %>% distinct(tailnum),
+  by = "tailnum"
+)
+nrow(missing_tailnum)   # ex: 721
+head(missing_tailnum)
+n_airports_total <- airports_clean %>% summarise(n = n_distinct(faa)) %>% pull(n)
+n_airports_total
+n_airports_depart <- flights_clean %>% summarise(n = n_distinct(origin)) %>% pull(n)
+n_airports_depart
+n_airports_dest <- flights_clean %>% summarise(n = n_distinct(dest)) %>% pull(n)
+n_airports_dest
+n_airports_used <- flights_clean %>%
+  summarise(n = n_distinct(c(origin, dest))) %>% pull(n)
+n_airports_used
+n_airports_no_dst <- airports_clean %>%
+  filter(grepl("N", tzone)) %>%
+  summarise(n = n_distinct(faa)) %>% pull(n)
+n_airports_no_dst
+airports_no_dst <- airports_clean %>% filter(grepl("N", tzone)) %>% select(faa, name, tzone)
+head(airports_no_dst)
+n_compagnies <- airlines_clean %>% summarise(n = n_distinct(carrier)) %>% pull(n)
+n_compagnies
+n_avions <- planes_clean %>% summarise(n = n_distinct(tailnum)) %>% pull(n)
+n_avions
+n_vols_annules <- flights_clean %>%
+  filter(is.na(dep_time) | is.na(arr_time)) %>%
+  summarise(n = n()) %>% pull(n)
+n_vols_annules
+pct_annules <- flights_clean %>%
+  summarise(pct = mean(is.na(dep_time) | is.na(arr_time)) * 100) %>% pull(pct)
+pct_annules
+library(dplyr)
+library(ggplot2)
+install.packages(ggplot2)
+install.packages("ggplot2")
+library(ggplot2)
+dest_by_carrier <- flights_clean %>%
+  filter(!is.na(dest), !is.na(carrier)) %>%
+  group_by(carrier) %>%
+  summarise(nb_destinations = n_distinct(dest), .groups = "drop") %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(desc(nb_destinations))
+head(dest_by_carrier, 10)
+topN <- 15
+dest_by_carrier %>%
+  slice_max(nb_destinations, n = topN) %>%
+  ggplot(aes(x = reorder(name, nb_destinations), y = nb_destinations)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = paste("Top", topN, "compagnies par nombre de destinations desservies"),
+    x = "Compagnie",
+    y = "Nombre de destinations (distinct)"
+  )
+dest_by_carrier_origin <- flights_clean %>%
+  filter(!is.na(dest), !is.na(carrier), !is.na(origin)) %>%
+  group_by(carrier, origin) %>%
+  summarise(nb_destinations = n_distinct(dest), .groups = "drop") %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(desc(nb_destinations))
+head(dest_by_carrier_origin, 10)
+top_carriers <- dest_by_carrier %>% slice_max(nb_destinations, n = 10) %>% pull(carrier)
+top_origins <- flights_clean %>%
+  count(origin, sort = TRUE) %>%
+  slice_head(n = 5) %>%
+  pull(origin)
+heat_data <- dest_by_carrier_origin %>%
+  filter(carrier %in% top_carriers, origin %in% top_origins)
+ggplot(heat_data, aes(x = origin, y = name, fill = nb_destinations)) +
+  geom_tile() +
+  labs(
+    title = "Nombre de destinations distinctes par compagnie et aéroport d'origine (Top compagnies/origins)",
+    x = "Aéroport d'origine",
+    y = "Compagnie",
+    fill = "Nb destinations"
+  )
+  )
+top_carriers <- dest_by_carrier %>% slice_max(nb_destinations, n = 10) %>% pull(carrier)
+top_origins <- flights_clean %>%
+  count(origin, sort = TRUE) %>%
+  slice_head(n = 5) %>%
+  pull(origin)
+heat_data <- dest_by_carrier_origin %>%
+  filter(carrier %in% top_carriers, origin %in% top_origins)
+ggplot(heat_data, aes(x = origin, y = name, fill = nb_destinations)) +
+  geom_tile() +
+  labs(
+    title = "Nombre de destinations distinctes par compagnie et aéroport d'origine (Top compagnies/origins)",
+    x = "Aéroport d'origine",
+    y = "Compagnie",
+    fill = "Nb destinations"
+  )
+savehistory("history2_R.txt")
+vols_houston <- flights_clean %>%
+  filter(dest %in% c("IAH", "HOU"))
+nrow(vols_houston)      # nombre de vols vers Houston
+head(vols_houston)
+vols_houston %>% count(dest)
+nyc_airports <- c("EWR","JFK","LGA")
+vols_nyc_sea <- flights_clean %>%
+  filter(origin %in% nyc_airports, dest == "SEA")
+n_vols_nyc_sea <- nrow(vols_nyc_sea)
+n_vols_nyc_sea
+n_compagnies_nyc_sea <- vols_nyc_sea %>%
+  summarise(n = n_distinct(carrier)) %>% pull(n)
+n_compagnies_nyc_sea
+compagnies_nyc_sea
+compagnies_nyc_sea <- vols_nyc_sea %>%
+  distinct(carrier) %>%
+  left_join(airlines_clean, by="carrier")
+compagnies_nyc_sea
+n_avions_uniques_nyc_sea <- vols_nyc_sea %>%
+  filter(!is.na(tailnum)) %>%
+  summarise(n = n_distinct(tailnum)) %>% pull(n)
+n_avions_uniques_nyc_sea
+resume_nyc_sea <- tibble(
+  trajet = "NYC (EWR/JFK/LGA) -> SEA",
+  nb_vols = n_vols_nyc_sea,
+  nb_compagnies = n_compagnies_nyc_sea,
+  nb_avions_uniques = n_avions_uniques_nyc_sea
+)
+resume_nyc_sea
+vols_par_dest <- flights_clean %>%
+  filter(!is.na(dest)) %>%
+  count(dest, name = "nb_vols") %>%
+  arrange(desc(nb_vols))
+head(vols_par_dest, 10)
+airports_lkp <- airports_clean %>%
+  select(faa, name) %>%
+  rename(airport_code = faa, airport_name = name)
+airlines_lkp <- airlines_clean %>%
+  select(carrier, name) %>%
+  rename(carrier_name = name)
+flights_named <- flights_clean %>%
+  left_join(airports_lkp, by = c("origin" = "airport_code")) %>%
+  rename(origin_name = airport_name) %>%
+  left_join(airports_lkp, by = c("dest" = "airport_code")) %>%
+  rename(dest_name = airport_name) %>%
+  left_join(airlines_lkp, by = "carrier")
+flights_sorted_alpha <- flights_named %>%
+  arrange(dest_name, origin_name, carrier_name)
+flights_sorted_alpha %>%
+  select(year, month, day, origin, origin_name, dest, dest_name, carrier, carrier_name, flight) %>%
+  head(20)
+resume_dest_origin_carrier <- flights_named %>%
+  group_by(dest_name, origin_name, carrier_name) %>%
+  summarise(nb_vols = n(), .groups = "drop") %>%
+  arrange(dest_name, origin_name, carrier_name)
+head(resume_dest_origin_carrier, 20)
+n_origins_total <- flights_clean %>%
+  summarise(n = n_distinct(origin)) %>% pull(n)
+n_origins_total
+origins_by_carrier <- flights_clean %>%
+  group_by(carrier) %>%
+  summarise(nb_origins = n_distinct(origin), .groups = "drop") %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(nb_origins)
+head(origins_by_carrier, 10)
+carriers_not_all_origins <- origins_by_carrier %>%
+  filter(nb_origins < n_origins_total)
+carriers_not_all_origins
+carriers_not_all_origins <- origins_by_carrier %>%
+  filter(nb_origins < n_origins_total)
+carriers_not_all_origins
+carriers_all_origins <- origins_by_carrier %>%
+  filter(nb_origins == n_origins_total)
+carriers_all_origins
+n_dests_total <- flights_clean %>%
+  summarise(n = n_distinct(dest)) %>% pull(n)
+n_dests_total
+dests_by_carrier <- flights_clean %>%
+  group_by(carrier) %>%
+  summarise(nb_dests = n_distinct(dest), .groups = "drop") %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(nb_dests)
+head(dests_by_carrier, 10)
+carriers_all_dests <- dests_by_carrier %>%
+  filter(nb_dests == n_dests_total)
+carriers_all_dests
+carriers_not_all_dests <- dests_by_carrier %>%
+  filter(nb_dests < n_dests_total)
+carriers_not_all_dests
+origins_list <- flights_clean %>%
+  group_by(carrier) %>%
+  summarise(
+    nb_origins = n_distinct(origin),
+    origins = paste(sort(unique(origin)), collapse = ", "),
+    .groups = "drop"
+  )
+dests_list <- flights_clean %>%
+  group_by(carrier) %>%
+  summarise(
+    nb_dests = n_distinct(dest),
+    dests = paste(sort(unique(dest)), collapse = ", "),
+    .groups = "drop"
+  )
+carrier_routes <- origins_list %>%
+  left_join(dests_list, by = "carrier") %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  relocate(name, .after = carrier)
+carrier_routes
+library(dplyr)
+# ===============================
+# 1) Destinations exclusives
+# ===============================
+dest_exclusives <- flights_clean %>%
+  filter(!is.na(dest), !is.na(carrier)) %>%
+  distinct(dest, carrier) %>%                 # relation unique dest-carrier
+  group_by(dest) %>%
+  summarise(
+    nb_compagnies = n_distinct(carrier),
+    carrier = first(carrier),
+    .groups = "drop"
+  ) %>%
+  filter(nb_compagnies == 1) %>%               # destinations exclusives
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(dest)
+# Affichage clair
+cat("===== DESTINATIONS EXCLUSIVES =====\n")
+print(dest_exclusives)
+# ===============================
+# 2) Nombre total
+# ===============================
+cat("\nNombre total de destinations exclusives : ",
+    nrow(dest_exclusives), "\n")
+# ===============================
+# 3) Résumé par compagnie
+# ===============================
+exclusives_par_compagnie <- dest_exclusives %>%
+  group_by(name) %>%
+  summarise(
+    nb_destinations_exclusives = n(),
+    destinations = paste(dest, collapse = ", "),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(nb_destinations_exclusives))
+cat("\n===== RÉSUMÉ PAR COMPAGNIE =====\n")
+print(exclusives_par_compagnie)
+library(dplyr)
+# ===============================
+# 1) Définir les compagnies cibles
+# ===============================
+carriers_cibles <- c("UA", "AA", "DL")  
+# UA = United Airlines, AA = American Airlines, DL = Delta Airlines
+# ===============================
+# 2) Filtrer les vols
+# ===============================
+flights_UA_AA_DL <- flights_clean %>%
+  filter(carrier %in% carriers_cibles) %>%
+  left_join(airlines_clean, by = "carrier") %>%
+  arrange(name, year, month, day)
+# Affichage clair
+cat("===== VOLS EXPLOITÉS PAR UNITED, AMERICAN ET DELTA =====\n")
+print(head(flights_UA_AA_DL, 20))
+# ===============================
+# 3) Combien de vols par compagnie
+# ===============================
+resume_compagnies <- flights_UA_AA_DL %>%
+  count(name, sort = TRUE)
+cat("\n===== NOMBRE DE VOLS PAR COMPAGNIE =====\n")
+print(resume_compagnies)
+# ===============================
+# 4) Nombre total de vols concernés
+# ===============================
+cat("\nNombre total de vols United + American + Delta : ",
+    nrow(flights_UA_AA_DL), "\n")
+savehistory("history_R.txt")
